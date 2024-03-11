@@ -7,6 +7,7 @@ app.use(express.static('server/public'));
 
 // Global variable that will contain all of the
 // calculation objects:
+
 let calculations = []
 
 
@@ -15,6 +16,32 @@ let calculations = []
 // GET /calculations
 
 // POST /calculations
+
+
+//----------Current Work----------\\
+
+app.get('/calculations', (req, res) => {
+
+    console.log('GET request made to /calculations.');
+
+  //sending global array of completed calculations to client
+    res.send(calculations);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
