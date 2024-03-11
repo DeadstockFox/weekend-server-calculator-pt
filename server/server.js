@@ -24,6 +24,9 @@ app.get('/calculations', (req, res) => {
 
     console.log('GET request made to /calculations.');
 
+  //testing GET request sends to client
+    calculations.push('dog', 'cat');
+
   //sending global array of completed calculations to client
     res.send(calculations);
 
