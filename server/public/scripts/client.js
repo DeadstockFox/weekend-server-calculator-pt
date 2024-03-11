@@ -31,10 +31,10 @@ axios.get('/calculations').then((response) => {
 function equals(event) {
     //preventing reload
     event.preventDefault();
-    
+
      //assigning user inputs to variables
-     let firstNumberInput = document.getElementById('numberFirst');
-     let secondNumberInput = document.getElementById('numberSecond');
+     let firstNumberInput = document.getElementById('numberFirst').value;
+     let secondNumberInput = document.getElementById('numberSecond').value;
 
      //creating array from inputs and global operator
      let calculation = {
@@ -55,8 +55,29 @@ function equals(event) {
     });
 };
 
+//Set of function to change the global operator depending on button clicked.
+
 function plus(event) {
+    //preventing reload
     event.preventDefault();
     operatorGlobal = "+";
+};
+
+function subtract(event) {
+    //preventing reload
+    event.preventDefault();
+    operatorGlobal = "-";
+};
+
+function multiply(event) {
+    //preventing reload
+    event.preventDefault();
+    operatorGlobal = "*";
+};
+
+function divide(event) {
+    //preventing reload
+    event.preventDefault();
+    operatorGlobal = "/";
 };
 
