@@ -24,12 +24,19 @@ app.get('/calculations', (req, res) => {
 
     console.log('GET request made to /calculations.');
 
-  //testing GET request sends to client
-    calculations.push('dog', 'cat');
+    //testing GET request sends to client
+    //calculations.push('dog', 'cat');
 
-  //sending global array of completed calculations to client
+    //sending global array of completed calculations to client
     res.send(calculations);
 
+});
+
+app.post('/calculations', (req,res) => {
+    console.log(req.body);
+
+    //closing POST loop
+    res.sendStatus(201);
 });
 
 
