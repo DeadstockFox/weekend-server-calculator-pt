@@ -23,9 +23,8 @@ let calculations = []
 app.get('/calculations', (req, res) => {
 
     console.log('GET request made to /calculations.');
+    //console.log(calculations);
 
-    //testing GET request sends to client
-    //calculations.push('dog', 'cat');
 
     //sending global array of completed calculations to client
     res.send(calculations);
@@ -35,9 +34,37 @@ app.get('/calculations', (req, res) => {
 app.post('/calculations', (req,res) => {
     console.log(req.body);
 
+    let pillars = req.body
+
+    //pushing return value of doMath function to .result in array object
+    pillars.result = doMath(pillars);
+    console.log(pillars);
+    calculations.push(pillars);
+
+
     //closing POST loop
     res.sendStatus(201);
 });
+
+
+//function that does math depending on the input operator
+function doMath (pillars) {
+    let result = '';
+    if (pillars.operator === '+'){
+        //parsInt because the numbers appear as strings with addition operator?
+        result = parseInt(pillars.firstNumber) + parseInt(pillars.secondNumber);
+    }
+    else if (pillars.operator === '-'){
+        result = pillars.firstNumber - pillars.secondNumber;
+    }
+    else if (pillars.operator === '*'){
+        result = pillars.firstNumber * pillars.secondNumber;
+    }
+    else if (pillars.operator === '/'){
+        result = pillars.firstNumber / pillars.secondNumber;
+    };
+    return result;
+}
 
 
 

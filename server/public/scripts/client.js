@@ -4,28 +4,33 @@ console.log('dogs');
 let operatorGlobal = '';
 
 
-//GET request to pull calculations from server and push to DOM
-axios.get('/calculations').then((response) => {
-    //pointing to ids in DOM where calculations will go
-    let calculationList = document.querySelector('#historyResult');
-    let calculationListRecent = document.querySelector('#resultRecent');
-    
-    //giving our data a var name
-    let calculations = response.data;
+//GET request inside function to call later
+function getMath() {
 
-    //looping through array
-    for (calculation of calculations){
-    calculationList.innerHTML +=`
-       <p> ~This is a test: ${calculation}</p>
-    `
-    };
+    //GET request to pull calculations from server and push to DOM
+    axios.get('/calculations').then((response) => {
+        //pointing to ids in DOM where calculations will go
+        let calculationList = document.querySelector('#historyResult');
+        let calculationListRecent = document.querySelector('#resultRecent');
+        
+        //giving our returned data a var name
+        let calculationsClient = response.data;
+        console.log(calculationsClient);
+
+        //looping through array to display history of calculations
+        for (calculation of calculationsClient){
+        calculationList.innerHTML +=`
+        <p>${calculation.firstNumber} ${calculation.operator}
+            ${calculation.secondNumber} = ${calculation.result}</p>
+        `
+        };
 
 
-}).catch((error) => {
-    //in case of error
-    console.log(error);
-});
-
+    }).catch((error) => {
+        //in case of error
+        console.log(error);
+    });
+};
 
 //function for POST request on 'equal' button click
 function equals(event) {
@@ -40,7 +45,8 @@ function equals(event) {
      let calculation = {
          firstNumber: firstNumberInput,
          secondNumber: secondNumberInput,
-         operator: operatorGlobal
+         operator: operatorGlobal,
+         result: "" //empty to add result later server-side
      };
      console.log(calculation);
 
@@ -53,6 +59,8 @@ function equals(event) {
         //in case of error
         console.log(error);
     });
+    //calling function with GET request after completed POST request
+    getMath()
 };
 
 //Set of function to change the global operator depending on button clicked.
