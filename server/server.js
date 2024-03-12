@@ -32,14 +32,12 @@ app.get('/calculations', (req, res) => {
 });
 
 app.post('/calculations', (req,res) => {
-    console.log(req.body);
 
-    let pillars = req.body
-
-    //pushing return value of doMath function to .result in array object
-    pillars.result = doMath(pillars);
-    console.log(pillars);
-    calculations.push(pillars);
+   //console.log(req.body);
+   let pillar = req.body;
+   pillar.result = doMath(req.body)
+   console.log(pillar);
+   calculations.push(pillar);
 
 
     //closing POST loop
@@ -48,23 +46,23 @@ app.post('/calculations', (req,res) => {
 
 
 //function that does math depending on the input operator
-function doMath (pillars) {
-    let result = '';
-    if (pillars.operator === '+'){
+function doMath(math) {
+    let result =''
+    if (math.operator === '+'){
         //parsInt because the numbers appear as strings with addition operator?
-        result = parseInt(pillars.firstNumber) + parseInt(pillars.secondNumber);
+        result = parseInt(math.numOne) + parseInt(math.numTwo);
     }
-    else if (pillars.operator === '-'){
-        result = pillars.firstNumber - pillars.secondNumber;
+    else if (math.operator === '-'){
+        result = math.numOne - math.numTwo;
     }
-    else if (pillars.operator === '*'){
-        result = pillars.firstNumber * pillars.secondNumber;
+    else if (math.operator === '*'){
+        result = math.numOne * math.numTwo;
     }
-    else if (pillars.operator === '/'){
-        result = pillars.firstNumber / pillars.secondNumber;
+    else if (math.operator === '/'){
+        result = math.numOne / math.numTwo
     };
     return result;
-}
+};
 
 
 

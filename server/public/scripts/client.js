@@ -3,6 +3,9 @@ console.log('dogs');
 //blank global variable for operator, to be replaced with new operator on button click
 let operatorGlobal = '';
 
+//Calling function on start to display calculation history (if any)
+getMath();
+
 
 //GET request inside function to call later
 function getMath() {
@@ -17,14 +20,29 @@ function getMath() {
         let calculationsClient = response.data;
         console.log(calculationsClient);
 
+        //resetting calculation history section before each GET request so nothing repeats
+        calculationList.innerHTML=`
+            <p id="history">Calculation History</p>
+        `;
+
         //looping through array to display history of calculations
         for (calculation of calculationsClient){
         calculationList.innerHTML +=`
-        <p>${calculation.firstNumber} ${calculation.operator}
-            ${calculation.secondNumber} = ${calculation.result}</p>
+        <p>${calculation.numOne} ${calculation.operator}
+            ${calculation.numTwo} = ${calculation.result}</p>
         `
         };
 
+        //recent calculation will only populate if something is in GET request
+        if (calculationsClient.length > 0) {
+            let calculationsClientLast = calculationsClient[calculationsClient.length-1]; 
+            //console.log(calculationsClientLast);
+
+            calculationListRecent.innerHTML =`
+            <p id="recentCalc">${calculationsClientLast.numOne} ${calculationsClientLast.operator}
+            ${calculationsClientLast.numTwo} = ${calculationsClientLast.result}</P>
+        `;
+        };
 
     }).catch((error) => {
         //in case of error
@@ -43,10 +61,10 @@ function equals(event) {
 
      //creating array from inputs and global operator
      let calculation = {
-         firstNumber: firstNumberInput,
-         secondNumber: secondNumberInput,
+         numOne: firstNumberInput,
+         numTwo: secondNumberInput,
          operator: operatorGlobal,
-         result: "" //empty to add result later server-side
+         //result: "" //empty to add result later server-side
      };
      console.log(calculation);
 
@@ -59,11 +77,12 @@ function equals(event) {
         //in case of error
         console.log(error);
     });
+
     //calling function with GET request after completed POST request
     getMath()
 };
 
-//Set of function to change the global operator depending on button clicked.
+//Set of functions to change the global operator depending on button clicked.
 
 function plus(event) {
     //preventing reload
@@ -89,3 +108,8 @@ function divide(event) {
     operatorGlobal = "/";
 };
 
+function reset(event) {
+    event.preventDefault();
+    document.querySelector('#historyResult').reset();
+    document.querySelector('#resultRecent').reset();
+}
