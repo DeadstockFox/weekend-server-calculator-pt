@@ -9,15 +9,25 @@
   <body>
     <h1>Server-Side Calculator</h1>
 
+
     <form data-testid="calculator">
-      <input id="numberFirst" placeholder="First Number">
-      <button onClick="plus(event)">+</button>
-      <button onClick="subtract(event)">-</button>
-      <button onClick="multiply(event)">*</button>
-      <button onClick="divide(event)">/</button>
-      <input id="numberSecond" placeholder="Second Number">
-      <button onClick="equals(event)">=</button>
-      <button onClick="reset(event)">C</button>
+    <input id="field" placeholder="Calculate">
+    <button onClick="zero(event)">0</button>
+    <button onClick="one(event)">1</button>
+    <button onClick="two(event)">2</button>
+    <button onClick="three(event)">3</button>
+    <button onClick="four(event)">4</button>
+    <button onClick="five(event)">5</button>
+    <button onClick="six(event)">6</button>
+    <button onClick="seven(event)">7</button>
+    <button onClick="eight(event)">8</button>
+    <button onClick="nine(event)">9</button>
+    <button onClick="plus(event)">+</button>
+    <button onClick="subtract(event)">-</button>
+    <button onClick="multiply(event)">*</button>
+    <button onClick="divide(event)">/</button>
+    <button onClick="equals(event)">=</button>
+    <button onClick="reset(event)">C</button>
     </form>
 
     <section data-testid="recentResult" id="resultRecent">

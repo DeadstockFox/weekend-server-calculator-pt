@@ -20,6 +20,8 @@ let calculations = []
 
 //----------Current Work----------\\
 
+
+//GET request
 app.get('/calculations', (req, res) => {
 
     console.log('GET request made to /calculations.');
@@ -31,12 +33,17 @@ app.get('/calculations', (req, res) => {
 
 });
 
+//POST request
 app.post('/calculations', (req,res) => {
 
-   //console.log(req.body);
+  //assigning our request data to variable
    let pillar = req.body;
+
+  //adding a result key to our calculation data, equal to the result of the function doMAth
    pillar.result = doMath(req.body)
    console.log(pillar);
+
+   //pushing data to array for GET request
    calculations.push(pillar);
 
 
@@ -63,18 +70,6 @@ function doMath(math) {
     };
     return result;
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
