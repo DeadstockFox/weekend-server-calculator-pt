@@ -28,9 +28,11 @@ function getMath() {
         `;
 
         //looping through array to display history of calculations
+        //using parseInt on results to remove any potential leading zeros.
         for (calc of calcClient){
         calcList.innerHTML +=`
-        <p>${calc.numOne} ${calc.operator} ${calc.numTwo} = ${calc.result}</p>
+        <p>${parseFloat(calc.numOne, 10)} ${calc.operator} 
+        ${parseFloat(calc.numTwo, 10)} = ${parseFloat(calc.result, 10)}</div>
         `};
 
         //recent calculation will only populate if something is in GET request
@@ -40,9 +42,10 @@ function getMath() {
             //console.log(calculationsClientLast);
 
             //pushing most recent calculation to DOM
+            //using parseInt on results to remove any potential leading zeros.
             calcListRecent.innerHTML =`
-            <p id="recentCalc">${calcClientLast.numOne} ${calcClientLast.operator}
-            ${calcClientLast.numTwo} = ${calcClientLast.result}</P>
+            <p id="recentCalc">${parseFloat(calcClientLast.numOne, 10)} ${calcClientLast.operator}
+            ${parseFloat(calcClientLast.numTwo, 10)} = ${parseFloat(calcClientLast.result, 10)}</p> <br>
         `};
 
     }).catch((error) => {
@@ -69,8 +72,10 @@ function equals(event) {
 
      //creating array from inputs and global operator
      let calculation = {
-         numOne: parseInt(calcReturn[0], 10),
-         numTwo: parseInt(calcReturn[1], 10),
+        
+        //setting each part of split string as numOne & numTwo
+         numOne: calcReturn[0],
+         numTwo: calcReturn[1],
          operator: operatorGlobal
          //result: "" //add result later server-side
      };
@@ -134,11 +139,17 @@ function reset(event) {
 
 //----------Stretch Goal Work----------\\
 
+//buttons for each added number on calculator
 
 let newCalcForm = document.getElementById('field');
 
+function decimal(event){
+    event.preventDefault();
+    newCalcForm.value = newCalcForm.value + ".";
+}
+
 function zero(event){
-    event.preventDefault()
+    event.preventDefault();
     newCalcForm.value = newCalcForm.value + 0;
 }
 function one(event){
@@ -179,6 +190,8 @@ function nine(event){
     newCalcForm.value = newCalcForm.value + 9;
 };
 
+//function to split inputs in field into two numbers for POST request.
+//operatorGlobal is reused as split variable
 function newCalc() {
     let splitVar ="";
     if(operatorGlobal === "+"){
@@ -195,3 +208,4 @@ function newCalc() {
     //console.log(mathForms);
     return mathForms;
 }
+

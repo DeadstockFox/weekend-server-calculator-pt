@@ -5,35 +5,40 @@
     <title>Server-Side Calculator</title>    
     <script defer src="scripts/axios.js"></script>
     <script defer src="scripts/client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
   <body>
-    <h1>Server-Side Calculator</h1>
+    <h1 id="headerStyle">Server-Side Calculator</h1>
 
 
-    <form data-testid="calculator">
+    <form id="formCalc"data-testid="calculator">
     <input id="field" placeholder="Calculate">
-    <button onClick="zero(event)">0</button>
-    <button onClick="one(event)">1</button>
-    <button onClick="two(event)">2</button>
-    <button onClick="three(event)">3</button>
-    <button onClick="four(event)">4</button>
-    <button onClick="five(event)">5</button>
-    <button onClick="six(event)">6</button>
-    <button onClick="seven(event)">7</button>
-    <button onClick="eight(event)">8</button>
-    <button onClick="nine(event)">9</button>
-    <button onClick="plus(event)">+</button>
-    <button onClick="subtract(event)">-</button>
-    <button onClick="multiply(event)">*</button>
-    <button onClick="divide(event)">/</button>
-    <button onClick="equals(event)">=</button>
-    <button onClick="reset(event)">C</button>
+    <button id="clear"onClick="reset(event)">C</button> <br><br>
+
+    <button id="digit"onClick="seven(event)">7</button>
+    <button id="digit"onClick="eight(event)">8</button>
+    <button id="digit"onClick="nine(event)">9</button>
+    <button id="digit"onClick="plus(event)">+</button> <br>
+
+    <button id="digit"onClick="four(event)">4</button>
+    <button id="digit"onClick="five(event)">5</button>
+    <button id="digit"onClick="six(event)">6</button>
+    <button id="digit"onClick="subtract(event)">-</button> <br>
+
+    <button id="digit"onClick="one(event)">1</button>
+    <button id="digit"onClick="two(event)">2</button>
+    <button id="digit"onClick="three(event)">3</button>
+    <button id="digit"onClick="multiply(event)">*</button> <br>
+
+    <button id="digit"onClick="zero(event)">0</button>
+    <button id="digit"onClick="decimal(event)">.</button>
+    <button id="digit"onClick="equals(event)">=</button>
+    <button id="digit"onClick="divide(event)">/</button>
     </form>
 
     <section data-testid="recentResult" id="resultRecent">
       <!-- The most recent calculation result goes here. -->
     </section>
-
     <section data-testid="resultHistory" id="historyResult">
       <!-- The list of calculation results goes here. -->
     </section>

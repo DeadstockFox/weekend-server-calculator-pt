@@ -1,0 +1,50 @@
+main, body {
+    background-color: #acd6ff;
+}
+
+p {
+    text-align: center;
+    font-size: 15px;
+}
+
+#history {
+    font-size: 30px;
+    color: #00a159;;
+}
+
+#historyResult{
+    font-style: bold;
+}
+
+#formCalc{
+    text-align:center;
+}
+
+#recentCalc {
+    color: #ff6347;
+    
+}
+
+#headerStyle {
+    background-color: #00a159;;
+    text-align: center;
+    color: white;
+    border-style: double;
+    width: 50%;
+    margin-left: 25%;
+}
+
+#field {
+    width: 165px;
+    height: 30px;
+}
+
+#digit {
+    height: 50px;
+    width: 50px
+}
+
+#clear{
+    height: 35px;
+    width: 35px;
+}

@@ -41,7 +41,7 @@ app.post('/calculations', (req,res) => {
 
   //adding a result key to our calculation data, equal to the result of the function doMAth
    pillar.result = doMath(req.body)
-   console.log(pillar);
+   //console.log("pillar is", pillar.result);
 
    //pushing data to array for GET request
    calculations.push(pillar);
@@ -57,16 +57,17 @@ function doMath(math) {
     let result =''
     if (math.operator === '+'){
         //parsInt because the numbers appear as strings with addition operator?
-        result = parseInt(math.numOne) + parseInt(math.numTwo);
+        result = parseFloat(math.numOne) + parseFloat(math.numTwo);
+        //console.log(result);
     }
     else if (math.operator === '-'){
-        result = math.numOne - math.numTwo;
+        result = parseFloat(math.numOne) - parseFloat(math.numTwo);
     }
     else if (math.operator === '*'){
-        result = math.numOne * math.numTwo;
+        result = parseFloat(math.numOne) * parseFloat(math.numTwo);
     }
     else if (math.operator === '/'){
-        result = math.numOne / math.numTwo
+        result = parseFloat(math.numOne) / parseFloat(math.numTwo);
     };
     return result;
 };
