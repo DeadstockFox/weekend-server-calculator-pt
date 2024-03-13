@@ -28,7 +28,7 @@ function getMath() {
         `;
 
         //looping through array to display history of calculations
-        //using parseInt on results to remove any potential leading zeros.
+        //using parseFloat with radix 10 on results to remove any potential leading zeros.
         for (calc of calcClient){
         calcList.innerHTML +=`
         <p>${parseFloat(calc.numOne, 10)} ${calc.operator} 
